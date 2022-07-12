@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ru-RU">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/static/main.css}" rel="stylesheet" />
+  <title>VL login</title>
+</head>
+<body>
+
+<div>
+  <form method="post" th:action="@{/login}">
+    <input name="j_username" value="ADMIN"/>
+    <input name="j_password" value="ADMIN"/>
+    <input type="submit"/>
+  </form>
+</div>
+
+<a th:href="@{/user}">Go to "user"</a> <br/>
+
+</body>
+</html>
