@@ -1,7 +1,9 @@
 package web.controllers;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.model.Role;
@@ -26,8 +28,23 @@ public class AdminPageController {
         this.roleService = roleService;
     }
 
+//    @GetMapping("/")
+//    public String indexPage(ModelMap model) {
+//        return "index";
+//    }
     @GetMapping("/admin")
-    public String AdminPage(Model model) {
+    public String AdminPage(Authentication auth, Model model) {
+        User user = (User) auth.getPrincipal();
+        StringBuilder sb = new StringBuilder();
+        sb.append(user.getEmail()).append(" with roles: ");
+        user.getRoles().stream().forEach(role -> {sb.append(role.getName()).append(", ");});
+        // убираем запятую и пробел в конце строки с ролями:
+        if(sb.length() > 0){
+            sb.deleteCharAt(sb.length() - 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        model.addAttribute("userinfo", sb.toString());
+
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
         List<Role> roles = roleService.getRoles();
@@ -42,6 +59,7 @@ public class AdminPageController {
                 ON ur.User_id = u.id
             LEFT JOIN roles as r\s
                 ON ur.Role_id = r.id
+            ORDER BY ur.User_id
             """).getResultList();
         model.addAttribute("userRole", userRole);
 

@@ -33,3 +33,7 @@ a.delete {
 input.roles{
     border:3px coral;
 }
+
+.col {
+    border: 1px solid coral;
+}

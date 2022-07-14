@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,11 +35,15 @@ public class AdminUserController {
     }
 
     @PostMapping(value = "/addUser",  produces = {"application/xml; charset=UTF-8"})
-    public String addUser(@ModelAttribute("user") User user, ModelMap model) {
+    public String addUser(@RequestBody User user, ModelMap model) {
 
         userService.setCreated(user, new GregorianCalendar().getTime());
         userService.setModified(user, new GregorianCalendar().getTime());
+        Set<Role> roles = user.getRoles();
+        user.setRoles(null);
         userService.add(user);
+        user.setRoles(roles);
+        userService.update(user);
         return "redirect:/admin";
     }
 

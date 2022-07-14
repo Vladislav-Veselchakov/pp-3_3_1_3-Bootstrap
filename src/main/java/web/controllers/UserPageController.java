@@ -21,7 +21,7 @@ public class UserPageController {
         this.userService = service;
     }
 
-    @GetMapping(value = "")
+    @GetMapping(value = "/")
     public String UserPage(Authentication auth, ModelMap model) {
         User user = (User) auth.getPrincipal();
         List<String> messages = new ArrayList<>();
