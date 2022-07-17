@@ -67,3 +67,37 @@ async function postParams(pbody) {
     console.log(result.message)
 } /////////////// c пом fetch() ////////////
 
+let btn = document.getElementById("editId");
+function btnEdinOnClick() {
+    alert("hello brn on cklick");
+    console.log("btn edin on clkick");
+}
+btn.onclick =function (ev) {
+            console.log("event " + ev);
+        alert("event: " + ev);
+        let str = "tru-lala";
+        document.getElementById("inputTest").value = "from onClick";
+
+};
+let sadfasdfsdf = 1;
+
+$("#editDeleteUser").on("show.bs.modal", function (event) {
+        alert("on(\"show.bs.modal\"");
+
+    }
+    )
+// $("#editId").
+// click(
+//     function (ev){
+//         console.log("event " + ev);
+//         alert("event: " + ev);
+//     }
+// );
+
+// 1st var
+// Вам абсолютно правильно делают замечание, что ID в рамках страницы должен быть уникальным, но можно так:
+// document.querySelectorAll('[id="header"]');
+//2nd var:
+// делаем класс, например "__select" и далее:
+// const selects = document.querySelectorAll('.__select');
+// selects.forEach(function(select) {

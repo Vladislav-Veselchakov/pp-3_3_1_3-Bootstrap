@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru-RU">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru-RU">
 <!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
 <head>
     <meta charset="UTF-8">
@@ -40,8 +40,8 @@
                     <!---------------- horizontal menu, puncts: "admin", "new user"...  -------------------->
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-link" id="nav-UsersТable-tab" data-toggle="tab" href="#nav-UsersТable" role="tab" aria-controls="nav-UsersТable" aria-selected="true">Users table</a>
-                            <a class="nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-newUser" role="tab" aria-controls="nav-newUser" aria-selected="false">New User</a>
+                            <a class="nav-link active" id="nav-UsersТable-tab" data-toggle="tab" href="#nav-UsersТable" role="tab" aria-controls="nav-UsersТable" aria-selected="true">Users table</a>
+                            <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-newUser" role="tab" aria-controls="nav-newUser" aria-selected="false">New User</a>
                             <a class="nav-link" id="nav-roles-tab" data-toggle="tab" href="#nav-roles" role="tab" aria-controls="nav-roles" aria-selected="false">Roles</a>
                             <a class="nav-link" id="nav-UserRole-tab" data-toggle="tab" href="#nav-UserRole" role="tab" aria-controls="nav-UserRole" aria-selected="false">User-Role</a>
                         </div>
@@ -49,7 +49,7 @@
                     <!-------------------content of horizontal menu-------------------------------->
                     <div class="tab-content" id="nav-tabContent">
                         <!-------------------"Users table" content:---------------------------->
-                        <div class="tab-pane fade" id="nav-UsersТable" role="tabpanel" aria-labelledby="nav-UsersТable-tab">
+                        <div class="tab-pane fade  show active" id="nav-UsersТable" role="tabpanel" aria-labelledby="nav-UsersТable-tab">
                             <H5>All users</H5>
                             <table class="table table-borderless border-0 table-striped">
                                 <thead>
@@ -75,6 +75,13 @@
 <!--                                    <td th:utext = "${user.modified}"> </td>-->
                                     <td> some role </td>
                                     <td>
+                                        <button type="button" class="btn btn-primary VLedit" data-toggle="modal" data-target="#editDeleteUser"
+                                                th:id="'id' + ${user.id}" name="editName"
+                                        th:value="'VL id: ' + ${user.id} + ' ' + ${user.firstName}">
+<!--                                         + ${user.id} +' ' + ${user.name}">-->
+<!--                                            value="editValue">-->
+                                            Edit2
+                                        </button>
                                         <a th:href="@{/admin/edit(id=${user.id})}" class="btn btn-info">edit</a>
                                     </td>
                                     <td>
@@ -87,7 +94,7 @@
 
                         </div> <!------- end of "Users table" ------------>
                         <!------- "new user" content ------------>
-                        <div class="tab-pane fade show active" id="nav-newUser" role="tabpanel" aria-labelledby="nav-newUser-tab">
+                        <div class="tab-pane fade" id="nav-newUser" role="tabpanel" aria-labelledby="nav-newUser-tab">
                             <h5>Add new user</h5>
                             <div class="row">
                                 <div class="col-1"></div>
@@ -180,6 +187,28 @@
 
 
 
+
+<!----------------------- Modal window edtit/delete ------------------------------------------->
+<div class="modal fade" id="editDeleteUser" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="editDeleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editDeleteUserLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+                <input type="text" id="inputTest">input here</input>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
