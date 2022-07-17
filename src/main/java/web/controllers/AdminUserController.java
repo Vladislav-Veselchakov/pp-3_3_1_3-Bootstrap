@@ -1,5 +1,6 @@
 package web.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin")
@@ -74,6 +76,22 @@ public class AdminUserController {
         return "redirect:/admin";
     }
 
+    @GetMapping("getUserWroles")
+//    public ResponseEntity<User> getUserWroles(@RequestParam Long id, ModelMap model) {
+    public @ResponseBody User getUserWroles(@RequestParam Long id, ModelMap model) {
+        User user = userService.getUserById(id);
+        List<Role> rolessWCheck = roleService.getRolesWithCheck(user);
+        Set<Role> roles2 = rolessWCheck.stream().collect(Collectors.toSet());
+        user.setRoles(roles2);
+//        user.setRoles(rolessWCheck.stream().collect(Collectors.toSet()));
+//        if (foundStudent == null) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(foundStudent);
+//        }
+
+        return user;
+    }
 
 
 }

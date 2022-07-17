@@ -65,7 +65,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each = "user : ${users}">
+                                <tr th:each = "user : ${users}" th:id="'rowid' + ${user.id}">
                                     <td th:utext = "${user.id}"> </td>
                                     <td th:utext = "${user.firstName}"> </td>
                                     <td th:utext = "${user.lastName}"> </td>
@@ -77,7 +77,7 @@
                                     <td>
                                         <button type="button" class="btn btn-primary VLedit" data-toggle="modal" data-target="#editDeleteUser"
                                                 th:id="'id' + ${user.id}" name="editName"
-                                        th:value="'VL id: ' + ${user.id} + ' ' + ${user.firstName}">
+                                        th:value="${user.id}">
 <!--                                         + ${user.id} +' ' + ${user.name}">-->
 <!--                                            value="editValue">-->
                                             Edit2
@@ -199,8 +199,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
-                <input type="text" id="inputTest">input here</input>
+
+                <label for="editId">ID</label>
+                <input type="text" class="form-control" id="editId" readonly>
+                <label for="editFirstName">First name</label>
+                <input type="text" class="form-control" id="editFirstName">
+                <label for="editLastName">Last name</label>
+                <input type="text" class="form-control" id="editLastName">
+                <label for="editEmail">Email address</label>
+                <input type="email" class="form-control" id="editEmail">
+                <label for="editPassword">Password</label>
+                <input type="text" class="form-control" id="editPassword">
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

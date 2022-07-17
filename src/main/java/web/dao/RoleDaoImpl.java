@@ -45,6 +45,8 @@ public class RoleDaoImpl implements RoleDao {
             FROM roles AS ar
             LEFT JOIN user_role AS ur
                 ON ur.Role_id = ar.id and ur.User_id = :User_id
+            ORDER BY 
+                ar.id
             """).setParameter("User_id", user.getId()).getResultList();
         List<Role> lstCheck = new ArrayList<>();
         for (Object elem : lstResult) {
