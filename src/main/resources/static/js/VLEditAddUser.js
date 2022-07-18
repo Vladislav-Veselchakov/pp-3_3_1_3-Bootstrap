@@ -69,19 +69,19 @@ async function postParams(pbody, pUrl) {
 }
 /////////////// end c пом fetch() ////////////////////////////////////////////////////
 
-
+//////////////////////////// users table: assign func to btn 'edit' //////////////////////
 const arrBtnEdit = document.querySelectorAll('.VLedit');
 arrBtnEdit.forEach(function(elem) {
     elem.onclick = btnEditOnClick;
-}
-)
+})
 
+//////////////////////////// users table: assign func to btn 'delete' //////////////////////
 const arrBtnDelete = document.querySelectorAll('.VLdelete');
 arrBtnDelete.forEach(function(elem) {
         elem.onclick = btnDeleteOnClick;
-    }
-)
+    })
 
+////////////////////////////// func to assign to btn 'edit' (in users table)////////////////////////////
 async function btnEditOnClick() {
     // by default fetch() uses method GET:
     let json = null;
@@ -115,9 +115,17 @@ async function btnEditOnClick() {
 
     });
 
+    let btnModalEdit = document.getElementById("btnModalDelete");
+    btnModalEdit.setAttribute("hidden", "");
+
+    let btnModalDelete = document.getElementById("btnModalEdit");
+    btnModalDelete.removeAttribute("hidden");
+
+    $("#editDeleteUserLabel").text("Edit user");
+
 }
 
-////////////////////////////// btn Delete on click (modal window) /////////////////////////////////
+////////////////////////////// func to assign to btn 'delete' (in users table) ////////////////////////////
 async function btnDeleteOnClick() {
     // by default fetch() uses method GET:
     let json = null;
@@ -169,10 +177,13 @@ async function btnDeleteOnClick() {
 
     let btnModalDelete = document.getElementById("btnModalDelete");
     btnModalDelete.removeAttribute("hidden");
+    $("#editDeleteUserLabel").text("Delete user");
+
     // $('#editWinSelectRoles').selectpicker('mobile');
     // $('.selectpicker').selectpicker('mobile');
 }
 
+////////////////////////////// btn 'edit' (modal win 'edit user') ////////////////////////
 let btnModalEdit = document.getElementById("btnModalEdit");
 btnModalEdit.onclick = function (pEvent) {
     let body = {}
@@ -197,6 +208,7 @@ btnModalEdit.onclick = function (pEvent) {
 
 }
 
+////////////////////////////// btn 'delete' (modal win 'edit user') ////////////////////////
 let btnModalDelete = document.getElementById("btnModalDelete");
 btnModalDelete.onclick = btnModalDeleteOnclick;
 async function btnModalDeleteOnclick() {
