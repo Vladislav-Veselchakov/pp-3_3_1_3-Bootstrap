@@ -76,16 +76,16 @@
                                     <td> some role </td>
                                     <td>
                                         <button type="button" class="btn btn-primary VLedit" data-toggle="modal" data-target="#editDeleteUser"
-                                                th:id="'id' + ${user.id}" name="editName"
-                                        th:value="${user.id}">
-<!--                                         + ${user.id} +' ' + ${user.name}">-->
-<!--                                            value="editValue">-->
-                                            Edit2
+                                                th:id="'id' + ${user.id}" name="editName" th:value="${user.id}">
+                                            Edit
                                         </button>
-                                        <a th:href="@{/admin/edit(id=${user.id})}" class="btn btn-info">edit</a>
                                     </td>
                                     <td>
-                                        <a th:href="@{/admin/delete(id=${user.id})}" class="btn btn-danger">delete</a>
+                                        <button type="button" class="btn btn-danger VLdelete" data-toggle="modal" data-target="#editDeleteUser"
+                                                th:id="'deleteId' + ${user.id}" name="deleteName" th:value="${user.id}">
+                                            Delete
+                                        </button>
+
                                     </td>
                                 </tr>
 
@@ -211,10 +211,19 @@
                 <label for="editPassword">Password</label>
                 <input type="text" class="form-control" id="editPassword">
 
+                <label for="selectRoles">Roles</label>
+                <select class="custom-select" multiple size="7" id="editWinSelectRoles">
+<!--                    <option th:each="role : ${roles}"-->
+<!--                            th:value="${role.id}"-->
+<!--                            th:text="${role.name}">-->
+                </select>
+                <br><br>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                <button type="button" class="btn btn-primary" id="btnModalEdit">Edit</button>
+                <button type="button" hidden class="btn btn-primary" id="btnModalDelete">Delete</button>
             </div>
         </div>
     </div>
